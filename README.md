@@ -61,6 +61,8 @@ The report updates with available market data; values can change between visits.
 
 ## Submission materials
 
+[Chinese form drafts and submission checklist](./SUBMISSION.zh-CN.md) include separate project descriptions, line-by-line material links, and a draft question for the organizer about closed-source evaluation. They are preparation materials, not a claim that either entry has been accepted.
+
 - **Project:** https://test.prex.best
 - **Public repository:** https://github.com/wcq-glhf/prex-bitget-ai-submission
 - **Research workflow:** https://test.prex.best/start
