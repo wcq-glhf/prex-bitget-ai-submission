@@ -258,5 +258,5 @@ $("download").addEventListener("click", () => {
 
 api("/api/config").then(({ upstream }) => {
   $("endpoint").textContent = `计算服务：${new URL(upstream).host}`
-  $("studio-link").href = `${upstream}/strategies?view=backtest`
+  $("studio-link").href = `${upstream}/strategies?view=backtest&builder=professional&market=bitget-rtoken`
 }).catch(() => status("本地连接失败，请确认 npm start 仍在运行。", true))

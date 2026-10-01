@@ -10,10 +10,10 @@ const assets = new Map([
   ["/app.mjs", ["app.mjs", "text/javascript; charset=utf-8"]],
   ["/styles.css", ["styles.css", "text/css; charset=utf-8"]],
 ])
-const destinations = new Set(["https://test.prex.best", "https://prex.best"])
+const destinations = new Set(["https://prex.best", "https://test.prex.best"])
 
-export function createDisplayServer({ upstream = process.env.PREX_API_BASE || "https://test.prex.best", fetchImpl = fetch } = {}) {
-  if (!destinations.has(upstream)) throw new Error("PREX_API_BASE must be https://test.prex.best or https://prex.best")
+export function createDisplayServer({ upstream = process.env.PREX_API_BASE || "https://prex.best", fetchImpl = fetch } = {}) {
+  if (!destinations.has(upstream)) throw new Error("PREX_API_BASE must be https://prex.best or https://test.prex.best")
   const jobs = new Map()
   let creating = false
   let nextCreateAt = 0

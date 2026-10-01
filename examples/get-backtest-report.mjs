@@ -1,6 +1,6 @@
 // This client reads a hosted report. It does not calculate or reproduce a backtest.
 import { displayReport } from "../lib/display.mjs"
-const response = await fetch("https://test.prex.best/api/bitget-ai/factor", {
+const response = await fetch("https://prex.best/api/bitget-ai/factor", {
   headers: { accept: "application/json" },
   signal: AbortSignal.timeout(30_000),
 })

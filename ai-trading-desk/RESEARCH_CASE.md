@@ -2,6 +2,10 @@
 
 Captured on **October 1, 2026 at 14:44 UTC** from the hosted PREX test service. This is a recorded API/display-client task, not a recording of the logged-in website and not an executed trade.
 
+**October 2 update:** the primary demo and client default now use production at [prex.best/start](https://prex.best/start). The observations and screenshot below retain their original date and test-environment provenance; they have not been relabelled as a production capture.
+
+The production API was checked separately through the updated display client on October 2: an NVDA/AMD 4H request returned both instruments and model-generated text (`prex-ai+bitget-v3`). The production sample report and CSV were readable, and one user-configured rToken backtest completed through the public API. These checks confirm the production client path; they do not replace the historical screenshot below or claim a new logged-in website recording.
+
 ## Question and settings
 
 The user selected **4H** and submitted:
@@ -35,7 +39,7 @@ The screenshot shows the actual question, model answer and returned observation 
 
 ## Repeat the task
 
-1. Open the [hosted PREX research preview](https://test.prex.best/start), register or sign in, and select **Market analysis**. No trading-account connection is needed.
+1. Open [PREX market research on production](https://prex.best/start), register or sign in, and select **Market analysis**. No trading-account connection is needed.
 2. Ask the question above, explicitly including **4 hours** when using the conversational website.
 3. Check that the answer refers to both requested symbols and the requested timeframe. Check the candle and derivatives timestamps separately.
 4. Alternatively, run the [optional display client](../README.md#open-source-display-client-optional-for-developers), choose **市场研究**, select **4 小时**, and send the question shown above.

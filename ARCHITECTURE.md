@@ -24,7 +24,7 @@ Display-safe metrics, research text and curve points
 | Read that task | `GET /api/v1/backtests/:jobId` | Reads status and result; never resubmits |
 | View the existing example | `GET /api/bitget-ai/factor` | Returns the existing rToken report |
 
-All requests target `https://test.prex.best` by default. No endpoint places an order, publishes a strategy, accesses an exchange account or transfers funds.
+All requests target production, `https://prex.best`, by default. Developers can explicitly opt into staging with `PREX_API_BASE=https://test.prex.best`; both origins are allowlisted. No endpoint in this client places an order, publishes a strategy, accesses an exchange account or transfers funds. The signed-in website's automatic optimization is a separate product workflow and is not exposed by this client.
 
 The display client forwards research input or a user-provided strategy; it never supplies PREX's proprietary factor recipe. The Bitget form serializes user selections into the public strategy schema: instrument codes, dates, timeframe, one public indicator identifier and user-chosen period, ranking direction, capital, costs and rebalance interval. It performs input validation, not financial calculations. It is deliberately limited to long-only, unlevered rToken spot research; the historical API asset-class enum is `stock_perp`, but `exchange=bitget` and `marketType=spot` determine the data route, not perpetual execution.
 

@@ -2,7 +2,7 @@
 
 **AI strategy creation and execution for everyday traders.**
 
-[Try PREX](https://prex.best) · [Bitget research preview](https://test.prex.best/start) · [Bitget Strategy Studio preview](https://test.prex.best/strategies?view=backtest) · [Product video](https://drive.google.com/file/d/18hOAWbHKjNPVI5ON2luKm4YQ1UTeMpHG/view?usp=drive_link) · [中文说明](./README.zh-CN.md)
+[Try PREX](https://prex.best) · [Bitget market research](https://prex.best/start) · [Bitget Strategy Studio](https://prex.best/strategies?view=backtest&builder=professional&market=bitget-rtoken) · [Product video](https://drive.google.com/file/d/18hOAWbHKjNPVI5ON2luKm4YQ1UTeMpHG/view?usp=drive_link) · [中文说明](./README.zh-CN.md)
 
 PREX helps users describe trading ideas, configure strategies, review historical performance, publish their work, and use their own connected trading accounts. The Bitget integration adds stock-market research and rToken strategy evaluation to the existing PREX interface.
 
@@ -12,13 +12,15 @@ This public repository contains an MIT-licensed display client, request adapters
 
 Visit **[prex.best](https://prex.best)** to use PREX in your browser. No local installation or terminal is required.
 
-For the Bitget features described in this submission, use the hosted preview: **[Market research](https://test.prex.best/start)** or **[Strategy Studio](https://test.prex.best/strategies?view=backtest)**. Register or sign in to PREX to use the interactive workflows; no exchange key or wallet connection is needed for research and backtesting. These Bitget preview links point to the test environment, not the production website.
+The Bitget workflows are live on the production website: **[Market research](https://prex.best/start)** and **[Bitget Strategy Studio](https://prex.best/strategies?view=backtest&builder=professional&market=bitget-rtoken)**. Register or sign in to use them; no exchange key or wallet connection is needed for research and backtesting. Use these production links in submission forms and product demonstrations.
+
+**October 2, 2026 update:** production now includes Bitget research, rToken backtesting, and optional automatic optimization after a supported backtest. Optimization compares up to eight candidates, costs 10 PREX points, and refunds failed jobs. Users review the comparison and choose whether to adopt a recommended version. This dated update does not claim these features were available at an earlier submission deadline.
 
 ## Preview
 
 ![PREX display client showing a real hosted sample report](./assets/display-preview.png)
 
-An actual hosted sample rendered by the optional API client on October 1, 2026, not the website UI or a custom-user result. The report shows its actual curve dates, generation time and server-labelled validation window. These labels alone do not prove an untouched out-of-sample test.
+An actual test-environment sample rendered by the optional API client on October 1, 2026, not the production website UI or a custom-user result. This historical screenshot is retained with its original provenance; the links and client defaults now use production. The report shows its actual curve dates, generation time and server-labelled validation window. These labels alone do not prove an untouched out-of-sample test.
 
 For market research, see the [actual NVDA/AMD task, returned observations and screenshot](./ai-trading-desk/RESEARCH_CASE.md). Research cards distinguish closed-candle prices from live quotes; the record states the verification scope and remaining limitations.
 
@@ -47,13 +49,15 @@ The **Bitget rToken form** collects your instrument codes, dates, timeframe, tes
 
 Natural-language backtesting currently routes Binance, OKX and Hyperliquid requests. For **Bitget rToken**, use the form, your own JSON configuration or the hosted Strategy Studio. This client rejects Bitget natural-language requests rather than silently testing another venue. Form/JSON configuration is user input, not PREX's calculation source.
 
-The default backend is `https://test.prex.best`. `PREX_API_BASE` can select that origin or `https://prex.best`; arbitrary hosts are rejected. Anonymous API access is subject to PREX's quotas and client-IP task ownership. Remain on the same network during a job. A server restart clears the local task allowlist; do not use this local demo as a public multi-user proxy.
+The default backend is production, `https://prex.best`. Developers can explicitly select staging with `PREX_API_BASE=https://test.prex.best`; arbitrary hosts are rejected. Staging is for development and is not the primary submission demo. Anonymous API access is subject to PREX's quotas and client-IP task ownership. Remain on the same network during a job. A server restart clears the local task allowlist; do not use this local demo as a public multi-user proxy.
 
 `npm test` runs local mocked integration tests; it does not create remote jobs. The application binds only to loopback, validates Host/Origin, does not retry POST requests, and keeps calculation details out of browser responses and downloads. It uses no local database, cookies, API credentials, trading permissions or automatic execution.
 
 </details>
 
 ### What is open, and what is not?
+
+**Alpha Factory does not publish PREX's strategy source or backtest framework.** The [publication boundary](./alpha-factory/README.md#publication-boundary) also applies to Git history, notebooks, archives, downloads and browser source maps. Results and client code do not grant access to private calculation code.
 
 | Open in this repository | Hosted privately by PREX |
 | --- | --- |
@@ -83,7 +87,7 @@ The research and backtest workflows do not require exchange credentials and do n
 
 ## Try the research workflow
 
-1. Open [PREX AI](https://test.prex.best/start).
+1. Open [PREX AI](https://prex.best/start).
 2. Create or sign in to a PREX account; no trading account is needed.
 3. Select **Market analysis**.
 4. Ask: **Compare NVDA and AMD on the 4-hour timeframe. Which is stronger, what evidence supports the view, and what would invalidate it?**
@@ -93,10 +97,11 @@ The 4-hour timeframe is an example. Users choose the timeframe for their own req
 
 ## Try the strategy workflow
 
-1. Open [Strategy Studio](https://test.prex.best/strategies?view=backtest).
-2. Choose a strategy-entry method and select **Bitget · rToken Spot** where appropriate.
+1. Open the [Bitget rToken professional form](https://prex.best/strategies?view=backtest&builder=professional&market=bitget-rtoken).
+2. Register or sign in, then confirm the market is **Bitget · rToken Spot**. Research uses stock-futures data; this backtest uses rToken spot data and is not a futures execution test.
 3. Select the instruments and configure your own strategy.
 4. Review the recognized specifications, run the backtest, and inspect the metrics and equity curve.
+5. For supported strategies, optionally click **Automatic optimization / 自动优化** after the backtest. Review the candidate comparison; adopt a new version only if one is recommended and you choose to use it. This signed-in website feature is separate from the optional public API client.
 
 ## Read an existing report through the open-source client
 
@@ -110,8 +115,8 @@ npm run report
 
 [`examples/get-backtest-report.mjs`](./examples/get-backtest-report.mjs) requests a results-only report from the hosted PREX service and prints its metrics and curves. It does not calculate indicators, generate trading decisions, simulate orders, or reproduce the backtest locally.
 
-- [Public report / JSON](https://test.prex.best/api/bitget-ai/factor)
-- [Public equity data / CSV](https://test.prex.best/api/bitget-ai/factor?format=csv)
+- [Public report / JSON](https://prex.best/api/bitget-ai/factor)
+- [Public equity data / CSV](https://prex.best/api/bitget-ai/factor?format=csv)
 
 The report updates with available market data; values can change between visits. Dates are shown in UTC. Custom-report dates reflect returned curve coverage, not an assumed date range. Missing timestamps remain explicitly unavailable. No financial metrics are recomputed by this client.
 
@@ -120,21 +125,21 @@ The report updates with available market data; values can change between visits.
 [Chinese form drafts and submission checklist](./SUBMISSION.zh-CN.md) include separate project descriptions, line-by-line material links, and a draft question for the organizer about closed-source evaluation. They are preparation materials, not a claim that either entry has been accepted.
 
 - **PREX website:** https://prex.best
-- **Bitget preview:** https://test.prex.best
+- **Demo environment:** production PREX; staging is optional for development only.
 - **Public repository:** https://github.com/wcq-glhf/prex-bitget-ai-submission
-- **Research workflow:** https://test.prex.best/start
-- **Backtest workflow:** https://test.prex.best/strategies?view=backtest
-- **Backtest results:** https://test.prex.best/api/bitget-ai/factor
-- **Equity data:** https://test.prex.best/api/bitget-ai/factor?format=csv
+- **Research workflow:** https://prex.best/start
+- **Backtest workflow:** https://prex.best/strategies?view=backtest&builder=professional&market=bitget-rtoken
+- **Backtest results:** https://prex.best/api/bitget-ai/factor
+- **Equity data:** https://prex.best/api/bitget-ai/factor?format=csv
 - **Existing product video:** https://drive.google.com/file/d/18hOAWbHKjNPVI5ON2luKm4YQ1UTeMpHG/view?usp=drive_link
 
 The existing video shows the general PREX / Binance Agent OS product workflow. It is supplementary product evidence, not a recording of the new Bitget integration. The hosted interactive workflows require a PREX login; the repository and public report links do not.
 
 ## Evaluation scope
 
-The Alpha Factory submission instructions require the code or notebook that generates the backtest report. This repository provides an input/display client that requests hosted calculations, not that calculation code. Acceptance of a closed-source alternative must be confirmed with the organizer; a public repository alone does not establish compliance.
+The [official Alpha Factory requirements](https://bitget-ai.gitbook.io/bitgetai_hackathons2#iv.-tracks-submission-and-judging), checked on October 2, require runnable strategy code and verifiable results. This repository provides an input/display client that requests hosted calculations, not that calculation code. Acceptance of a closed-source alternative must be confirmed with the organizer; moving the demo to production does not change that boundary.
 
-AI Trading Desk requires a complete research-task demonstration or recording. The product workflow and existing overview video are available; their acceptance depends on the organizer's assessment of the demonstrated task.
+AI Trading Desk requires an accessible demo and a complete research task. The production workflow is the main demo, and the existing overview video is supplementary. Acceptance depends on the organizer's assessment of the demonstrated task.
 
 ## License and contact
 

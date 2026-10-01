@@ -126,6 +126,7 @@ test("create then poll is functional; no engine fields reach the browser", async
     calls.push({ url, options })
     return Response.json(options.method === "POST" ? { id, status: "queued" } : { job: { id, status: "completed", finishedAt: "2026-10-01T09:00:00Z" }, result: report })
   })
+  assert.equal((await (await call("/api/config")).json()).upstream, "https://prex.best")
   const response = await call("/api/backtests", { prompt: "Binance BTCUSDT 1h 的趋势策略回测" })
   assert.equal(response.status, 202)
   const created = await response.json()
@@ -136,6 +137,8 @@ test("create then poll is functional; no engine fields reach the browser", async
   assert.equal(data.result.generatedAt, "2026-10-01T09:00:00.000Z")
   assert.equal(JSON.stringify(data).includes(sentinel), false)
   assert.equal(calls.length, 2)
+  assert.equal(calls[0].url, "https://prex.best/api/v1/backtests")
+  assert.equal(calls[1].url, `https://prex.best/api/v1/backtests/${id}`)
   assert.equal(calls[0].options.redirect, "error")
 })
 test("form endpoint creates a user-configured Bitget task and rejects invalid input before forwarding", async (t) => {
@@ -149,7 +152,7 @@ test("form endpoint creates a user-configured Bitget task and rejects invalid in
   assert.equal(calls.length, 0)
   assert.equal((await call("/api/backtests", { mode: "form", parameters: form })).status, 202)
   assert.equal(calls.length, 1)
-  assert.equal(calls[0].url, "https://test.prex.best/api/v1/backtests")
+  assert.equal(calls[0].url, "https://prex.best/api/v1/backtests")
   assert.deepEqual(calls[0].body, { strategy: formStrategy(form) })
 })
 test("unknown jobs, cross-site requests, Host injection and file traversal are rejected", async (t) => {
