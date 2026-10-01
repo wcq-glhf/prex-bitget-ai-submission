@@ -1,176 +1,197 @@
-# PREX · Bitget 提交材料草稿（生产环境）
+# PREX · Bitget 官方表单填写版（生产环境）
 
-这份文档用于填写或补充官方表单，不代表项目已经提交、入选或获得闭源豁免。
+更新于 2026 年 10 月 2 日。按当前官方表单字段整理，两套项目材料分别复制到各自的表单。本文更新不代表已代为提交或修改报名记录。
 
-公开范围：产品说明、体验步骤、研究与回测 API 展示客户端，以及回测指标和净值数据。客户端支持输入问题、提交用户自定义策略、查询任务和展示结果，不是只读报告下载器；PREX 引擎、因子公式、权重和策略计算实现保持闭源。开源许可仅覆盖本仓库。
+## 表单依据与填写方式
 
-## 在线体验与可选开源展示端
+- [官方提交表单](https://docs.google.com/forms/d/e/1FAIpQLScojKm9H2xDNFL3ijcDcKxwG-_PvkmyimiAB-SEFOx_WsqGNA/viewform) 当前写明截止时间为 **2026 年 10 月 8 日 23:59（UTC+8）**。旧手册的 9 月 27 日与当前表单不一致，此处按实际表单更新，后续以官方最新通知为准。
+- 一句话简介最多 140 字符。项目介绍分五部分；材料链接单独逐行放入 `Submission Material Links`，不混进项目介绍。
+- 每个项目单独提交，两个项目使用相同的真实团队信息与 Bitget UID。
+- 主要 Demo 均为生产 `prex.best`。网站交互需要注册或登录；公开报告、CSV 和仓库无需登录 PREX。
+- 表单要求登录项目附演示视频。下面保留现有 PREX 概览视频，不将它说成 Bitget 专项录屏；该旧视频能否充分覆盖评审任务仍需确认。表单推荐公开 X 或 YouTube 视频，时长不超过三分钟。
+- PREX 引擎、因子公式、私有权重及策略计算继续闭源。Alpha Factory 的计算代码要求与独立样本外证据仍有未完成项，详见项目二。
 
-主要 Demo 使用 **PREX 生产环境**：[市场研究](https://prex.best/start) / [Bitget rToken 策略工作室](https://prex.best/strategies?view=backtest&builder=professional&market=bitget-rtoken)。评委和用户无需安装程序或运行终端，注册或登录后即可体验。正式提交、补充说明及 GitHub 首页统一使用 `prex.best`；测试环境仅保留作开发用途。
+## 两份表单共用的信息
 
-仓库另附可选的开源展示客户端，供开发者运行。用户可以输入研究问题或自己的回测请求，由 PREX 后端计算，客户端展示返回的结论、指标与曲线；已有示例报告单独展示。参数表单和 JSON 配置支持调用已有 Bitget rToken 回测路径；表单仅把用户选择转成请求，不包含因子或回测计算代码。客户端的 Bitget 自然语言回测请求暂不支持，不会静默换成其他市场。详见 [运行说明](./README.zh-CN.md) 和 [公开／闭源边界](./ARCHITECTURE.md)。
+| 表单字段 | 填写内容 |
+| --- | --- |
+| Team Name | PREX |
+| Team Lead Bitget UID (numbers only) | 填本人实际 Bitget UID，仅数字；本材料不预填或公开账号标识 |
+| Team Lead Email | 填可收信的负责人邮箱；项目公开联系邮箱为 hello@prex.best |
+| Team Lead Contact (Telegram Handle or other) | 已有项目联系账号为 @WARD999999，确认仍为报名联系人后使用 |
+| Member Background | 按本人真实身份选择，如 Developer、Researcher、Trader、Entrepreneur |
+| University Name | 仅申请大学专项奖时填写真实学校，否则留空 |
+| Apply for Demo Day | 按本人意愿选择 |
+| How did you hear about this event? | 按实际来源选择 |
+| X Project Post URL | 填本人已发布的对应项目帖子链接，不能用 X 主页或官方活动帖替代 |
+| Did this team participate in S1? | 按真实参赛历史选择 |
+| Apply for Post-event Kimi K3 Token Credits | 按本人意愿选择 |
+| Open to Playbook Review and Listing Discussion | 按本人意愿选择，不是已上架的声明 |
 
-本次增加的是调用和展示功能，不包含 PREX 计算实现，也不改变下文关于计算代码交付范围的说明。
+身份、账号和意愿字段不要整段复制成答案。下文“已观察”是实际检查结果，“计划”是后续验证安排。
 
-## 2026 年 10 月 2 日补充说明（可复制）
+## 项目一：AI Trading Desk
 
-PREX 的 Bitget 市场研究、rToken 策略回测及回测后的自动优化已上线正式站点。主要研究 Demo 为 https://prex.best/start ，回测 Demo 为 https://prex.best/strategies?view=backtest&builder=professional&market=bitget-rtoken 。请以这两个生产入口替换此前的测试环境链接。
+### Competition Track
 
-用户登录后可完成“配置策略 → 运行回测 → 查看指标与曲线 → 按需自动优化 → 对比并决定是否采用新版本”。自动优化最多比较 8 个候选，每次消耗 10 PREX 积分，失败退还；没有合适候选时保留原策略。研究和回测均不需要连接交易账户，也不自动下单。
+```text
+AI Trading Desk
+```
 
-公开仓库继续提供项目说明及 API 展示客户端，PREX 计算引擎保持闭源。已有产品视频沿用为概览附件；10 月 1 日的测试环境截图保留原始时间和来源。本补充反映 10 月 2 日的上线状态，不将新功能或当前报告描述成比赛截止日之前已经存在的成果。
+### Competition Sub-theme
 
-## 使用前确认
+```text
+Personalized Research Workbench
+```
 
-- 两个项目分别填写表单，以各自的功能、体验流程和材料接受评审，不把同一份结果重复描述成两个独立成果。
-- 下方项目介绍可以复制；模型名称、已发布的 X 帖链接、团队资料须填写真实信息，不能用占位文字提交。
-- 旧视频继续作为产品概览附件，明确其展示的是 PREX / Binance Agent OS，不称为 Bitget 专项录屏。
-- 当前材料没有公开 Alpha Factory 要求的策略计算代码，需先询问主办方是否接受闭源替代方式。
-- 2026 年 10 月 2 日复核时，官方页面仍写明提交截止日期为 **2026 年 9 月 27 日（UTC+8）**。本次为生产上线后的材料更新；新提交、补交或修改已提交内容是否获接收，以主办方确认为准。
+### Project Name
 
-规则来源：[Bitget 官方规则](https://bitget-ai.gitbook.io/bitgetai_hackathons2#iv.-tracks-submission-and-judging)。以主办方最新确认及表单要求为准。
+```text
+PREX Market Research Copilot
+```
 
-## 项目一：PREX Market Research Copilot
+### One-line Project Summary
 
-赛道：AI Trading Desk
+```text
+在 PREX 生产网站用自然语言研究 Bitget 美股永续行情，比较标的、查看数据依据与风险，并持续追问。
+```
 
-主题：Personalized Research Workbench
+### Project Description
 
-### 项目介绍（可复制）
+复制以下五段到同一个项目介绍字段：
 
-**1. 为什么做这个产品**
+```text
+1. 核心想法
+个人交易者研究股票相关市场时，常在行情、图表和聊天工具间反复切换，难以核对 AI 判断所依据的数据。PREX Market Research Copilot 将自然语言问答与 Bitget 美股永续行情整合在同一个研究工作台。程序读取对应标的及周期的市场证据，大模型组织解释，用户查看时间、依据和风险后自行作出决定。
 
-普通交易用户研究股票或代币时，需要反复切换行情、图表和聊天工具。PREX Market Research Copilot 将自然语言问答和 Bitget 行情研究整合在同一个工作台，让用户围绕明确的问题查看市场依据、比较标的并识别风险。AI 辅助分析，交易决定仍由用户作出。
+2. 目标用户与产品价值
+面向关注科技股及代币化股票、会看基础图表但不会编写研究脚本的个人交易者，主要用于交易前的单股研究、同类股票比较和风险复核。用户可按自己的研究频率选择 1 小时、4 小时或日线；研究不要求资金规模、交易所密钥或钱包。与脱离行情的通用聊天相比，PREX 把回答绑定到可检查的标的、周期和数据时间。
 
-**2. 面向谁，有什么价值**
+3. 验证数据与关键指标
+已观察：2026 年 10 月 2 日，通过生产公开接口完成 NVDA/AMD 4 小时研究请求，返回两个目标标的、市场观察和模型正文。可复查任务为“比较 NVDA 和 AMD 的 4 小时趋势，谁更强？依据是什么？什么情况下这个判断失效？”。生产研究页面可访问，展示客户端 15 项本地测试通过。这些是交付及接口验证，不是投资判断准确率或真实用户留存数据。
+计划：用固定研究任务集评估标的与周期匹配、数据引用一致性、风险和失效条件是否完整，并记录响应时间与任务完成率；上线使用数据将按首次研究完成、后续追问和再次使用统计，区分实际观察与目标。当前不填虚构的用户数、AUM 或交易量。
 
-主要面向关注科技股及代币化股票、会看基础行情但不会编写研究脚本的个人交易者。用户可以指定标的和周期，研究单个资产，或比较多个资产的相对走势，不需要提供交易所密钥或先配置自动交易。
+4. 当前进展
+Bitget 市场研究已融合进生产 PREX 的 AI 助手。用户注册或登录后进入市场分析，输入问题并继续追问。研究服务使用 Bitget 公共 V3 行情接口及 DeepSeek V4 Flash；模型超时或不可用时提供明确标识的规则回退。Next.js、React 和独立 API 展示客户端构成产品与展示入口。已处理请求周期匹配、已收盘 K 线与实时观察区分、回退标识及响应脱敏；后续重点是持续评估研究质量。本项目流程不自动下单。
 
-**3. 如何验证**
+5. 对 AI Trading 的看法
+面向个人交易者的 AI 研究工具应先让数据和判断可复核，再谈自动化。模型负责解释证据和提出需要验证的问题，不能把生成的文字当作真实行情、确定收益或已经执行的交易。
+```
 
-可体验任务：“比较 NVDA 和 AMD 的 4 小时趋势，谁更强？依据是什么？什么情况下这个判断失效？”用户在 PREX AI 的市场分析模式中提问，检查回答是否对应指定标的与周期、是否提供数据时间和行情依据、是否说明结论的限制及风险，再继续追问。4 小时只是演示参数，不是系统固定周期。
+### Role of the LLM / AI in Your Project
 
-本项目不把回测收益当作投研助手的有效性证明。尚未在本材料中提供该 Bitget 工作流的独立任务完成率或留存统计；后续将基于真实研究任务记录评估回答完整性、数据引用一致性和用户继续研究的情况。
+```text
+2026 年 10 月 2 日核验的生产 Bitget 研究 API 使用 DeepSeek V4 Flash（deepseek-v4-flash）。程序识别支持的标的与周期并读取 Bitget 行情，大模型结合这些证据回答比较、趋势及风险问题。模型不生成行情数值、不访问用户交易账户，也不在该流程中自主下单。
 
-**4. 当前进展**
+模型正文与规则回退有不同来源标识：公开 API 的模型响应为 prex-ai+bitget-v3，回退为 prex-rules+bitget-v3；官网登录助手使用另一组来源标识，不能混同。HTTP 成功本身不代表模型生成成功。本材料只描述已核验的调用链，不声称所有 PREX 功能都使用同一模型或使用了 Qwen。
+```
 
-Bitget 研究入口已在生产站点 `prex.best/start` 上线，融合到 PREX 现有 AI 助手，不需要切换到独立的比赛页面。PREX 原有策略工作室保留自然语言、专业表单、完整策略和代码配置等入口；研究问答与策略回测可以分别使用，不宣称每次研究结论都会自动变成可执行策略。本次展示的研究流程不自动下单。
-
-**5. 交付材料**
-
-提供可访问的 PREX 生产网站、完整任务体验步骤、公开项目说明及已有产品视频。交互研究需要注册或登录 PREX；公开仓库无需申请访问。已有视频用于介绍 PREX 通用产品流程，Bitget 新增研究功能以当前生产网站体验为准。
-
-### 大模型的作用（草稿）
-
-程序先识别支持的标的和时间周期，并读取对应的 Bitget 行情；大模型结合用户问题与这些市场证据组织解释。标的匹配、行情读取与模型文字生成分开说明，不把程序解析描述成模型自主调用交易工具。模型不保证涨跌，也不在本投研流程中自主交易。
-
-2026 年 10 月 2 日核验的生产公开 Bitget 投研 API 调用模型为 **DeepSeek V4 Flash（`deepseek-v4-flash`）**，用于结合 Bitget 快照组织研究结论，不负责产生行情数值或执行交易。当天通过展示客户端请求生产 NVDA / AMD 4H 投研，返回两个标的及模型正文。该公开 API 成功生成模型正文时返回 `prex-ai+bitget-v3`；失败、超时或无可用正文时返回 `prex-rules+bitget-v3`。官网登录助手采用另一组来源字段：结合 Bitget 数据生成模型正文时为 `model+bitget-v3`，数据规则回退为 `bitget-v3`。不能将两个接口的字段混为一谈，也不能将规则回退描述成模型成功回答。该说明不宣称所有 PREX 功能都使用同一模型，也不声称使用 Qwen。
-
-### 提交材料链接（逐行复制）
+### Submission Material Links
 
 ```text
 生产 Demo／市场研究（需注册或登录）：https://prex.best/start
-公开项目说明与体验步骤：https://github.com/wcq-glhf/prex-bitget-ai-submission/tree/main/ai-trading-desk
-历史投研记录与截图（10 月 1 日测试环境 API 展示端）：https://github.com/wcq-glhf/prex-bitget-ai-submission/blob/main/ai-trading-desk/RESEARCH_CASE.md
-公开仓库（研究／自定义回测展示客户端，不含 PREX 引擎）：https://github.com/wcq-glhf/prex-bitget-ai-submission
-已有产品演示视频（PREX / Binance Agent OS 概览，非 Bitget 专项录屏）：https://drive.google.com/file/d/18hOAWbHKjNPVI5ON2luKm4YQ1UTeMpHG/view?usp=drive_link
+完整研究任务步骤：https://github.com/wcq-glhf/prex-bitget-ai-submission/tree/main/ai-trading-desk
+研究记录与截图（含原始日期和环境说明）：https://github.com/wcq-glhf/prex-bitget-ai-submission/blob/main/ai-trading-desk/RESEARCH_CASE.md
+公开 API 展示客户端及说明：https://github.com/wcq-glhf/prex-bitget-ai-submission
+已有 PREX 产品概览视频（非 Bitget 专项录屏）：https://drive.google.com/file/d/18hOAWbHKjNPVI5ON2luKm4YQ1UTeMpHG/view?usp=drive_link
 ```
 
-如果表单要求使用 X 或 YouTube 视频链接，可将同一段旧视频上传至指定平台，无需重新录制；但更换发布平台不会使旧视频变成 Bitget 完整研究任务的证明。是否足以满足演示要求，仍应向主办方确认。
+## 项目二：Alpha Factory
 
-## 项目二：PREX rToken Alpha Lab
+当前可填写项目说明，但**不能据此标记已满足该赛道全部要求**：公开仓库不含生成回测的计算代码，闭源替代方式尚未确认；报告的 30 天验证窗口也尚无独立参数冻结证明。不得为满足代码字段而公开 PREX 引擎，或把读取报告的脚本冒充计算代码。
 
-赛道：Alpha Factory
+### Competition Track
 
-主题：rToken Factor Strategies
+```text
+Alpha Factory
+```
 
-**当前是待确认的提交方案，不是已经满足代码要求的材料包。**
+### Competition Sub-theme
 
-### 项目介绍（可复制）
+```text
+rToken Factor Strategies
+```
 
-**1. 为什么做这个产品**
+### Project Name
 
-普通用户往往有交易想法，却缺少将想法转成明确规则、运行历史测试并审视风险的工具。PREX rToken Alpha Lab 把 Bitget rToken 数据接入现有策略工作室，帮助用户配置多资产研究与回测任务，并查看收益、回撤、风险指标、成本和净值曲线。
+```text
+PREX rToken Alpha Lab
+```
 
-本项目探索不同标的之间的相对表现能否形成可检验的组合策略。具体因子公式、权重及计算实现属于 PREX 的闭源范围；本公开版本不提供可在本地重算该策略的代码。
+### One-line Project Summary
 
-**2. 面向谁，有什么价值**
+```text
+在 PREX 生产策略工作室配置 Bitget rToken 策略，查看真实历史回测，并按需比较自动优化候选。
+```
 
-面向希望研究代币化股票组合、能够理解收益与回撤但不想自行搭建回测环境的个人用户。用户可以从自然语言或表单配置开始，也可以使用完整策略和代码配置入口；标的、周期和策略参数由用户选择。
+### Project Description
 
-**3. 如何验证**
+复制以下五段到同一个项目介绍字段：
 
-用户可以在生产网站运行回测，并检查报告中的测试区间、交易成本、风险指标和净值曲线。支持的策略可继续运行自动优化、查看候选对比并自行决定是否采用推荐版本。公开结果接口另提供一个服务器端示例报告及 CSV 曲线，便于直接查看，不需要注册或提供 API Key。
+```text
+1. 核心想法
+个人用户有代币化股票交易想法，却往往缺少将想法转为明确规则、计算成本并检验历史风险的工具。PREX rToken Alpha Lab 使用 Bitget rToken 现货数据，在既有策略工作室中配置和评估策略，研究多个资产之间的相对表现能否形成可检验的组合规则。用户指定标的、周期和参数，由服务器计算结果；本金、杠杆、回撤约束、手续费及滑点纳入策略规格。具体公式、权重与计算实现属于 PREX 闭源范围。
 
-10 月 2 日生产上线验收完成真实 Bitget 回测及 8 候选优化，并验证并发提交只扣一次、失败退款、跨账户隔离、分享因子脱敏和手机布局。本次验收样例未推荐替换，因此不将“采用新版本”分支记作该次真实浏览器验收通过；这些检查也不代表策略收益保证或独立样本外有效性证明。
+2. 目标用户与产品价值
+面向能够理解收益与回撤、希望研究代币化股票组合但不想自行搭建回测环境的个人交易者。用户可从 Bitget 专业表单或自己的完整策略配置开始，以 1 小时、4 小时或日线进行历史研究，按自己的模拟本金比较结果。本流程用于投入真实资金前的研究，不要求连接交易账户，不宣称固定的最低实盘本金或适合所有风险偏好。
 
-同日切换展示客户端默认地址后，生产公开 API 实测完成一次用户自定义 rToken 回测（返回 179 个净值点），示例报告及 CSV 均返回 209 个曲线点。这些数量只记录本次接口验收，不代表用户规模或固定报告长度。
+3. 验证数据与关键指标
+已观察：公开示例报告生成于 2026-10-01 22:48:02 UTC，曲线覆盖 2026-07-17 12:00 至 2026-10-01 16:00 UTC，约 76.2 天；累计收益 28.87%，最大回撤幅度 4.54%，Sharpe 3.17，盈利周期占比 51.68%，报告标注交易成本 1.05%，调仓 18 次。服务端标记的最后 30 天窗口为 2026-09-01 16:00 至 2026-10-01 16:00 UTC，窗口 Sharpe 为 4.11。以上是历史模拟快照，后续报告可能更新；窗口标签不能证明该区间未参与选参，尚不宣称独立样本外验证已成立。
+已观察：生产端另完成用户自定义 rToken 回测和 8 候选优化验收，覆盖并发提交不重复扣费、失败退款、跨账户隔离及分享脱敏。该优化样例未推荐替换，不把运行成功当作收益改善。未公开的指标或费用分项不编造；暂无本 Bitget 工作流独立的用户留存、AUM 或实盘交易量数据。
+计划：建立参数冻结与独立验证记录，持续检验不同市场阶段及成本条件下的稳健性，并跟踪回测完成、保存策略和再次使用等实际产品指标。
 
-公开报告随可用市场数据更新，具体数值以报告返回的生成时间和测试终点为准，不把当前结果描述成历史提交时已经产生的结果。报告里的样本区间标签本身不能证明样本外数据从未参与选参；严格的样本外有效性还需要参数冻结记录及独立验证。未完成该核验前，不宣称已经满足样本外验证要求。
+4. 当前进展
+Bitget rToken 回测和回测后的自动优化已上线生产 PREX。用户确认策略后运行回测，查看指标与净值；支持的策略可按需比较最多 8 个候选，再决定是否采用推荐版本。优化每次消耗 10 PREX 积分，失败退还；没有合适候选时保留原版本，不通过提高杠杆或移除费用美化结果。产品使用 Bitget 市场数据、PREX 私有回测引擎、Next.js/React 界面及后台任务。公开仓库只提供 API 调用与展示，不具备离线重算引擎。符合赛道要求的闭源评审方式和独立样本外证据仍待确认。
 
-**4. 当前进展与限制**
+5. 对 AI Trading 的看法
+AI 可以降低策略研究的使用门槛，但计算结果应由可追踪的数据和确定性程序产生。自动优化应呈现比较过程与限制，让用户作出选择，而不是把搜索出的历史表现包装成未来收益保证。
+```
 
-Bitget rToken 回测及自动优化已上线 PREX 生产策略工作室。自动优化按服务器规则比较候选，不通过提高杠杆或移除交易成本美化结果，也不由大模型编造收益。公开仓库提供 MIT 许可的 API 展示客户端，可输入研究问题、提交自己的策略参数、查询回测任务并展示指标与曲线；它不计算因子、不模拟成交，也不能离线独立复现回测。自动优化使用官网登录后的入口。PREX 回测框架及策略计算保持闭源，因此当前材料仍需主办方确认是否接受闭源评审方式。
+### Role of the LLM / AI in Your Project
 
-**5. 交付材料**
+```text
+本次 rToken 演示以用户填写的策略参数进入回测，收益、风险指标和候选比较均由服务器端确定性程序计算。自动优化不是由大模型编造净值或直接作出实盘交易决定。
 
-提供生产策略工作室、自动优化体验步骤、公开回测结果 JSON、净值 CSV、项目说明和研究／回测展示客户端。已有产品视频作为补充介绍，不声称视频展示了当前 Bitget 策略、自动优化或对应回测结果。
+PREX 相邻的 Bitget 市场研究流程已核验使用 DeepSeek V4 Flash（deepseek-v4-flash），用于结合市场证据组织解释。该研究能力与策略回测可以分别使用；不把投研模型调用描述成每一次回测或优化的必要步骤。本条只覆盖已核验的模型用途。
+```
 
-### 大模型的作用（草稿）
-
-大模型辅助理解用户的策略描述、补全缺失信息和解释回测结果；数值计算由服务器端回测程序完成，而不是由聊天模型凭空生成收益曲线。提交前补充实际使用的模型名称，并按实际链路说明其用途，不把确定性的规则计算描述成 LLM 自主交易。
-
-### 提交材料链接（逐行复制）
+### Submission Material Links
 
 ```text
 生产 Demo／Bitget rToken 专业表单及回测后自动优化（需注册或登录）：https://prex.best/strategies?view=backtest&builder=professional&market=bitget-rtoken
 项目说明与闭源范围：https://github.com/wcq-glhf/prex-bitget-ai-submission/tree/main/alpha-factory
-回测结果 JSON（动态报告，非生成代码）：https://prex.best/api/bitget-ai/factor
+回测记录 JSON（动态更新的结果报告）：https://prex.best/api/bitget-ai/factor
 净值与基准 CSV：https://prex.best/api/bitget-ai/factor?format=csv
-开源研究／回测展示客户端（不含计算引擎）：https://github.com/wcq-glhf/prex-bitget-ai-submission
-可选报告读取脚本（不计算或复现回测）：https://github.com/wcq-glhf/prex-bitget-ai-submission/blob/main/examples/get-backtest-report.mjs
-已有产品演示视频（非 Bitget 专项录屏）：https://drive.google.com/file/d/18hOAWbHKjNPVI5ON2luKm4YQ1UTeMpHG/view?usp=drive_link
+公开 API 展示客户端（不含生成回测的计算代码）：https://github.com/wcq-glhf/prex-bitget-ai-submission
+已有 PREX 产品概览视频（非 Bitget 专项录屏）：https://drive.google.com/file/d/18hOAWbHKjNPVI5ON2luKm4YQ1UTeMpHG/view?usp=drive_link
 ```
 
-## 可以发给主办方的确认消息
+## Material Additions Since S1
 
-### 中文
+仅本人确认参加过 S1 时填写。以下是本次 Bitget 功能更新的候选描述，需先与实际 S1 提交版本比较，只保留当时没有的部分：
 
-你好，我们准备以 PREX 提交 AI Trading Desk 和 Alpha Factory 两个独立方向，产品功能分别是 Bitget 行情投研和 rToken 策略回测。
+```text
+本次新增 Bitget 美股永续行情研究与多标的比较、Bitget rToken 现货数据接入原策略工作室，以及生产回测后的候选优化流程。研究、回测、失败退款和分享权限均有对应验收；公开仓库增加研究／自定义回测 API 展示客户端和完整体验说明。此次更新以生产 prex.best 为主要 Demo，保留各项验证发生的真实时间及原始环境，不将旧视频描述成新增功能录屏。
+```
 
-PREX 的回测引擎、因子公式和策略计算实现属于商业闭源资产。我们可以公开项目说明、可访问 Demo、实际回测指标、净值 CSV，以及 MIT 许可的结果读取客户端；这个客户端仅获取服务器报告，不是生成回测的计算代码。
+## 向主办方确认闭源评审与旧视频的消息草稿
 
-想确认：
+此段只供用户自行发送，未代发。
 
-1. Alpha Factory 是否接受这种闭源方式？如果不接受，我们不会将读取报告的脚本作为“生成报告的代码”提交。是否有不要求公开计算源码的评审替代方式？
-2. AI Trading Desk 能否使用当前网站上的完整研究任务，加上已有 PREX 产品演示视频？旧视频不是 Bitget 专项录屏。
-3. 官方页面的截止日期是 9 月 27 日，目前是否仍可提交或补充上述材料？
+```text
+你好，PREX 的 Bitget 研究与 rToken 回测已上线生产站点。我们准备分别提供 AI Trading Desk 的完整研究任务和 Alpha Factory 的回测记录。
 
-我们希望在不公开商业计算实现的前提下，提供足够的可验证材料；任何替代方式都以你们明确同意为准。
+PREX 引擎、因子公式及计算实现为商业闭源资产。我们可以提供可访问 Demo、报告 JSON、净值 CSV 和公开 API 展示客户端，但该客户端不生成或独立复现回测。请问 Alpha Factory 是否接受不公开计算源码的评审替代方式？报告目前有标记的 30 天窗口，但我们不将其冒称为已验证的独立样本外结果。
 
-### English
+网站交互需要登录，我们已附现有 PREX 产品概览视频，并公开 Bitget 研究任务步骤及真实记录；旧视频不是 Bitget 专项录屏。请问现有材料是否足以满足登录 Demo 的视频及完整任务要求？若视频需更换发布平台，我们计划复用原视频，不将其改称为新增功能演示。
+```
 
-Hi, we are preparing two separate PREX entries: a Bitget-powered research workflow for AI Trading Desk and rToken strategy evaluation for Alpha Factory.
+## 提交前仍需本人填写或确认
 
-Our backtest engine, factor formulas, and strategy calculations are proprietary. We can provide an accessible demo, documentation, actual backtest metrics, equity CSV files, and an MIT-licensed report-reading client. That client retrieves a hosted report; it does not generate or independently reproduce the backtest.
+- 真实 Bitget UID、负责人联系方式、成员背景、来源渠道、S1 历史及各项参加意愿。
+- 每个项目对应的真实 X 帖链接；按官方推广要求填写，不使用占位链接。
+- 视频对评委可访问，且旧概览视频能否满足本项目展示要求已确认。
+- Alpha Factory 的闭源替代方式及独立样本外证据；未确认则保留上述限制，不标记为已满足。
+- 两份项目介绍各自复制到表单字段，材料链接逐行填写；GitHub 更新不会自动修改已提交的官方表单。
 
-Could you confirm whether Alpha Factory accepts a closed-source submission or another evaluation method that does not require publishing our calculation code? We will not present a report-fetching script as report-generating code.
-
-For AI Trading Desk, would a complete research task in the current product plus our existing PREX overview video be acceptable? The video is not a recording of the new Bitget integration.
-
-The published submission deadline is September 27. Are new submissions or supplemental materials still accepted?
-
-## 最后检查
-
-- [ ] 已确认提交／补交时间。
-- [ ] 已确认 Alpha Factory 的闭源替代方式；没有确认则不标记为符合该赛道代码要求。
-- [x] 已核验 Bitget 投研模型名称、用途与规则回退标识；提交时仍需检查实际响应，不能将回退当成模型成功。
-- [ ] 已补充本人实际发布的 X 帖链接，并包含官方要求的标签、提及及引用帖。
-- [x] Demo 链接、公开报告及展示客户端默认地址统一使用生产环境；历史截图保留测试来源。
-- [ ] 已用未登录浏览器检查仓库、报告、CSV 和视频访问权限。
-- [ ] 已从新注册账户走通完整投研任务；旧视频不夸大为新增功能录屏。
-- [ ] 若提交 Alpha Factory，已核验数据总区间、独立样本外验证及生成时点，并与官方确认可接受的证据形式。
-- [ ] 未把原私有仓库改为公开，未上传公式、权重、计算代码或密钥。
-- [ ] 两份表单分别填写项目说明和对应材料，未将 GitHub 链接替代项目说明本身。
-
-本文件只整理材料；未代替用户提交表单、发布 X 帖子或联系主办方。
+本材料仅公开产品说明、用户流程、模型用途、公开报告指标及展示客户端。不得加入私有策略配方、回测实现、密钥或用户私有数据；现有研究截图保留原始日期和测试来源，视频继续标为产品概览。

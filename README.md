@@ -122,7 +122,7 @@ The report updates with available market data; values can change between visits.
 
 ## Submission materials
 
-[Chinese form drafts and submission checklist](./SUBMISSION.zh-CN.md) include separate project descriptions, line-by-line material links, and a draft question for the organizer about closed-source evaluation. They are preparation materials, not a claim that either entry has been accepted.
+[Copy-ready Chinese form answers](./SUBMISSION.zh-CN.md) follow the current official form: project names, summaries within 140 characters, five-part descriptions, model roles and line-by-line material links for each entry. The guide also records the form's updated deadline and separates personal fields from project text. These are preparation materials, not a claim that either entry has been submitted or accepted.
 
 - **PREX website:** https://prex.best
 - **Demo environment:** production PREX; staging is optional for development only.
@@ -139,7 +139,7 @@ The existing video shows the general PREX / Binance Agent OS product workflow. I
 
 The [official Alpha Factory requirements](https://bitget-ai.gitbook.io/bitgetai_hackathons2#iv.-tracks-submission-and-judging), checked on October 2, require runnable strategy code and verifiable results. This repository provides an input/display client that requests hosted calculations, not that calculation code. Acceptance of a closed-source alternative must be confirmed with the organizer; moving the demo to production does not change that boundary.
 
-AI Trading Desk requires an accessible demo and a complete research task. The production workflow is the main demo, and the existing overview video is supplementary. Acceptance depends on the organizer's assessment of the demonstrated task.
+AI Trading Desk requires an accessible demo and a complete research task. The production workflow is the main demo. The current [submission form](https://docs.google.com/forms/d/e/1FAIpQLScojKm9H2xDNFL3ijcDcKxwG-_PvkmyimiAB-SEFOx_WsqGNA/viewform) requires a demo video when login is needed; the existing overview video is included with its original scope. Whether it adequately covers the submitted workflow remains for the organizer to assess.
 
 ## License and contact
 

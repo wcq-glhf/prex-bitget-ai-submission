@@ -99,10 +99,10 @@ npm run report
 
 ## 提交说明
 
-[查看两份填表草稿与提交检查表](./SUBMISSION.zh-CN.md)：包含项目介绍、逐行材料链接、已核验的投研模型与回退说明，以及询问主办方闭源评审方式的中英文消息。实际 X 帖链接和官方认可情况仍需补充，不能把 GitHub 更新当作已完成报名。
+[查看可直接复制的两套填表资料](./SUBMISSION.zh-CN.md)：按当前官方字段提供项目名、140 字符内简介、五段项目介绍、模型用途及逐行材料链接，并记录表单更新后的截止时间。UID、实际 X 帖链接及各项个人选择单独列出，不把 GitHub 更新当作已完成报名。
 
 已有视频展示的是 PREX 通用产品和 Binance Agent OS 工作流，不能作为“已录制 Bitget 新功能”的证明。
 
-根据 [10 月 2 日核对的官方规则](https://bitget-ai.gitbook.io/bitgetai_hackathons2#iv.-tracks-submission-and-judging)，Alpha Factory 要求可运行的策略代码和可验证结果。本仓库的展示客户端不满足该代码条款，闭源方式仍需主办方认可。AI Trading Desk 以可访问 Demo 和完整投研任务为主，旧视频作为补充；切换生产环境不代表已获得参赛资格确认。
+根据 [10 月 2 日核对的官方规则](https://bitget-ai.gitbook.io/bitgetai_hackathons2#iv.-tracks-submission-and-judging)，Alpha Factory 要求可运行的策略代码和可验证结果。本仓库的展示客户端不满足该代码条款，闭源方式仍需主办方认可。AI Trading Desk 以可访问 Demo 和完整投研任务为主；当前[官方表单](https://docs.google.com/forms/d/e/1FAIpQLScojKm9H2xDNFL3ijcDcKxwG-_PvkmyimiAB-SEFOx_WsqGNA/viewform)要求登录项目附演示视频，已有概览视频继续注明原始范围，是否充分覆盖本项目任务仍需确认。
 
 历史回测和 AI 研究不代表未来表现。
