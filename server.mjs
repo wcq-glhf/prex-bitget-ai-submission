@@ -122,7 +122,7 @@ export function createDisplayServer({ upstream = process.env.PREX_API_BASE || "h
         const job = displayJob(payload.job)
         if (job.id !== local.id) throw problem(502, "任务返回不一致。")
         jobs.set(job.id, { ...local, ...job })
-        return json(res, 200, { job, ...(payload.result ? { result: displayReport(payload.result) } : {}) })
+        return json(res, 200, { job, ...(payload.result ? { result: displayReport(payload.result, { generatedAt: payload.job?.finishedAt }) } : {}) })
       }
       throw problem(404, "页面或接口不存在。")
     } catch (error) {

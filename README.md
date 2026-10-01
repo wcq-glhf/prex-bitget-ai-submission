@@ -14,6 +14,12 @@ Visit **[prex.best](https://prex.best)** to use PREX in your browser. No local i
 
 For the Bitget features described in this submission, use the hosted preview: **[Market research](https://test.prex.best/start)** or **[Strategy Studio](https://test.prex.best/strategies?view=backtest)**. Register or sign in to PREX to use the interactive workflows; no exchange key or wallet connection is needed for research and backtesting. These Bitget preview links point to the test environment, not the production website.
 
+## Preview
+
+![PREX display client showing a real hosted sample report](./assets/display-preview.png)
+
+An actual hosted sample rendered by the optional API client on October 1, 2026, not the website UI or a custom-user result. The report shows its actual curve dates, generation time and server-labelled validation window. These labels alone do not prove an untouched out-of-sample test.
+
 ## Open-source display client (optional, for developers)
 
 The repository also includes a separate local API/display client. Running it is optional and is not necessary to use the PREX website.
@@ -30,10 +36,6 @@ npm start
 ```
 
 Open the local address printed by `npm start` on the same computer. Keep that process running while using the optional client; it does not deploy the client to the PREX website.
-
-![PREX display client showing an actual hosted sample report](./assets/display-preview.png)
-
-Screenshot: hosted example fetched on October 1, 2026, not a custom-user result or a promised return.
 
 - **Market research:** enter a question, default stock symbol and timeframe; PREX returns Bitget-backed research and market observations.
 - **Custom backtest:** fill in the Bitget rToken form, submit natural language for supported venues, or paste your own complete `strategy` JSON object. The client creates a hosted job, polls its status and draws the returned curve.
@@ -109,7 +111,7 @@ npm run report
 - [Public report / JSON](https://test.prex.best/api/bitget-ai/factor)
 - [Public equity data / CSV](https://test.prex.best/api/bitget-ai/factor?format=csv)
 
-The report updates with available market data; values can change between visits.
+The report updates with available market data; values can change between visits. Dates are shown in UTC. Custom-report dates reflect returned curve coverage, not an assumed date range. Missing timestamps remain explicitly unavailable. No financial metrics are recomputed by this client.
 
 ## Submission materials
 

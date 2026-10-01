@@ -69,6 +69,34 @@ test("research display drops scoring and private fields", () => {
   assert.equal(result.markets[0].price, 100)
   assert.equal(JSON.stringify(result).includes(sentinel), false)
 })
+test("coverage and validation are allowlisted and do not invent missing dates", () => {
+  const coverage = { start: "2026-07-17T12:00:00Z", end: "2026-10-01T08:00:00Z", totalDays: 75.8,
+    oosStart: "2026-09-01T08:00:00Z", oosDays: 30, private: sentinel }
+  const result = displayReport({ coverage, metrics: { oosSharpe: 2 }, equity: [] }, { sample: true, generatedAt: "2026-10-01T09:00:00Z" })
+  assert.equal(result.coverage.totalDays, 75.8)
+  assert.equal(result.coverage.start, "2026-07-17T12:00:00.000Z")
+  assert.equal(result.validation.days, 30)
+  assert.equal(result.validation.sharpe, 2)
+  assert.equal(result.generatedAt, "2026-10-01T09:00:00.000Z")
+  assert.equal(JSON.stringify(result).includes(sentinel), false)
+  const empty = displayReport({}, { generatedAt: "invalid" })
+  assert.deepEqual(empty.coverage, { start: "", end: "", totalDays: null })
+  assert.equal(empty.validation.start, "")
+  assert.equal(empty.generatedAt, "")
+})
+test("custom report dates use actual curve extent and server completion time", () => {
+  const first = Date.parse("2026-09-01T00:00:00Z"), last = Date.parse("2026-09-30T00:00:00Z")
+  const result = displayReport({ equityCurve: [{ ts: last, equity: 110 }, { ts: first, equity: 100 }],
+    metrics: { elapsedDays: 29 }, strategy: { start: "2020-01-01" },
+    validation: { start: "2026-09-15", end: "2026-09-30", days: 15, private: sentinel },
+  }, { generatedAt: last + 1000 })
+  assert.equal(result.coverage.start, new Date(first).toISOString())
+  assert.equal(result.coverage.end, new Date(last).toISOString())
+  assert.equal(result.coverage.totalDays, 29)
+  assert.equal(result.validation.days, 15)
+  assert.equal(result.generatedAt, new Date(last + 1000).toISOString())
+  assert.equal(JSON.stringify(result).includes(sentinel), false)
+})
 test("input forwards user parameters without embedding PREX calculation rules", () => {
   const prompt = "Binance BTCUSDT 1h，从 2026-09-01 开始测试我自己的趋势策略。"
   assert.deepEqual(backtestInput({ prompt, ignore: sentinel }), { prompt, language: "zh" })
@@ -96,7 +124,7 @@ test("create then poll is functional; no engine fields reach the browser", async
   const calls = []
   const { call } = await fixture(t, async (url, options) => {
     calls.push({ url, options })
-    return Response.json(options.method === "POST" ? { id, status: "queued" } : { job: { id, status: "completed" }, result: report })
+    return Response.json(options.method === "POST" ? { id, status: "queued" } : { job: { id, status: "completed", finishedAt: "2026-10-01T09:00:00Z" }, result: report })
   })
   const response = await call("/api/backtests", { prompt: "Binance BTCUSDT 1h 的趋势策略回测" })
   assert.equal(response.status, 202)
@@ -105,6 +133,7 @@ test("create then poll is functional; no engine fields reach the browser", async
   const data = await (await call(`/api/backtests/${id}`)).json()
   assert.equal(data.job.status, "completed")
   assert.equal(data.result.metrics[0].value, 12.3)
+  assert.equal(data.result.generatedAt, "2026-10-01T09:00:00.000Z")
   assert.equal(JSON.stringify(data).includes(sentinel), false)
   assert.equal(calls.length, 2)
   assert.equal(calls[0].options.redirect, "error")

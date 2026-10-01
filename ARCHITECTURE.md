@@ -34,6 +34,8 @@ The natural-language API currently does not correctly route Bitget rToken, so th
 
 Public files implement HTTP transport, validation, allowlisted response projection, error handling, interface layout and canvas coordinates. Canvas coordinate scaling only places server-returned numbers on screen; it does not compute financial metrics.
 
+Reports expose only validated date fields, server-provided coverage duration and validation-window metadata alongside the allowlisted metrics and curve. Custom-report dates come from the returned curve extent, not the submitted strategy's requested dates; completion time comes from the hosted job. Missing fields stay unavailable. Both the browser download and command-line example use the same projection, including nested-field filtering. A validation-window label is not proof that the data was excluded from parameter selection.
+
 There are no PREX factor formulas, private weight tables, backtest simulation loops, P&L formulas, execution adapters or proprietary engine modules in this repository. Client tests use synthetic display data, not engine code. Unknown response fields are not forwarded to the browser or downloadable display result. Research text is rendered as text rather than executable HTML.
 
 The API remains a separately operated service. MIT licensing of this client does not grant access to PREX's server source or exempt users from API quotas and terms. A remote service returning results is not a local independent reproduction of its calculations.

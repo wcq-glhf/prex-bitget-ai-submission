@@ -184,6 +184,16 @@ function renderResearch(result) {
 function renderReport(result) {
   clearOutput(result)
   $("result-title").textContent = result.kind === "sample" ? "Bitget rToken · 已有示例" : "你的回测结果"
+  const metadata = node("div", "report-metadata")
+  const dateLabel = (value) => value ? value.replace("T", " ").slice(0, 16) : "未提供"
+  metadata.append(node("p", "", `实际曲线区间（UTC）：${dateLabel(result.coverage?.start)} — ${dateLabel(result.coverage?.end)}`))
+  if (typeof result.coverage?.totalDays === "number") metadata.append(node("p", "", `覆盖 ${format(result.coverage.totalDays)} 天`))
+  metadata.append(node("p", "", `报告生成（UTC）：${dateLabel(result.generatedAt)}`))
+  if (result.validation?.start && result.validation?.end) {
+    metadata.append(node("p", "", `验证窗口（UTC）：${dateLabel(result.validation.start)} — ${dateLabel(result.validation.end)} · ${format(result.validation.days)} 天`))
+    metadata.append(node("p", "hint", "窗口标记来自服务端，不等同于已验证的独立样本外表现，也不证明该区间从未参与选参。"))
+  }
+  $("output").append(metadata)
   const metrics = node("div", "metrics")
   for (const item of result.metrics) metrics.append(metric(item.label, item.value, item.unit, item.key === "totalReturnPct"))
   $("output").append(metrics)
