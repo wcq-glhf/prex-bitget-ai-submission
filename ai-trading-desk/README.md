@@ -4,11 +4,11 @@ Track: **AI Trading Desk**
 
 Sub-theme: **Personalized Research Workbench**
 
-## Open-source display client
+## Try PREX online
 
-Run `npm start` from the repository root and open `http://127.0.0.1:4178` on the same computer. Select **市场研究**, enter your question, default symbol and timeframe, then submit. The local client calls PREX's existing research API and displays the returned answer and market observations. It includes no indicator calculations, model credentials or proprietary prompts. Anonymous access remains subject to the hosted API's quotas.
+Visit **[prex.best](https://prex.best)** for PREX. For this submission's Bitget research workflow, open the **[hosted research preview](https://test.prex.best/start)** in the test environment. No local installation or terminal is required.
 
-The following hosted product workflow is also available; it does not require installing the display client.
+Register or sign in to PREX and follow the task below; no trading account is needed.
 
 ## Complete task to try
 
@@ -25,6 +25,10 @@ what evidence supports the view, and what would invalidate it?
 5. Continue the same conversation with a question about one of the instruments or a different timeframe.
 
 The user chooses the instruments and timeframe. This research workflow needs no exchange credentials and places no order.
+
+## Optional developer client
+
+The repository also includes a separate open-source display client for API users. See [developer setup](../README.md#open-source-display-client-optional-for-developers). Its **市场研究** tab accepts a question, symbol and timeframe, calls PREX's research API, and displays the returned answer and market observations. It includes no indicator calculations, model credentials or proprietary prompts. Anonymous API access remains subject to the hosted API's quotas. Running this client is not required to use the website.
 
 ## Existing video
 

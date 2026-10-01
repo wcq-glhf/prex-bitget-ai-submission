@@ -6,9 +6,13 @@ Sub-theme: **rToken Factor Strategies**
 
 PREX integrates Bitget rToken market data into the existing Strategy Studio. Users choose instruments and strategy settings, run a hosted backtest, and inspect performance and equity curves.
 
-## Open-source display client
+## Try PREX online
 
-Run `npm start` in the repository root, open `http://127.0.0.1:4178`, and select **自定义回测**. Fill in the **Bitget rToken form** with your instruments, dates, interval, indicator and lookback, test capital and rebalance settings. The basic form submits a single-indicator, long-only, unlevered configuration; use your own complete strategy JSON for more complex inputs. The client creates a hosted task and displays its returned metrics and curve. It contains input serialization, not indicator formulas or the proprietary calculation engine. The separate **示例报告** tab retrieves an existing report and does not substitute for a custom result.
+Visit **[prex.best](https://prex.best)** for PREX. For this submission's Bitget rToken workflow, open the **[hosted Strategy Studio preview](https://test.prex.best/strategies?view=backtest)** in the test environment. Register or sign in, select **Bitget · rToken Spot**, configure your strategy and run the backtest. No local installation or terminal is required.
+
+## Optional developer client
+
+For the separate open-source API/display client, see [developer setup](../README.md#open-source-display-client-optional-for-developers). Select **自定义回测** in that client and fill in the **Bitget rToken form** with your instruments, dates, interval, indicator and lookback, test capital and rebalance settings. The basic form submits a single-indicator, long-only, unlevered configuration; use your own complete strategy JSON for more complex inputs. The client creates a hosted task and displays its returned metrics and curve. It contains input serialization, not indicator formulas or the proprietary calculation engine. The separate **示例报告** tab retrieves an existing report and does not substitute for a custom result.
 
 The natural-language mode supports the existing Binance / OKX / Hyperliquid route, but currently rejects Bitget prompts because that hosted natural-language route has not been integrated. Use the parameter form, user-authored JSON or the hosted Strategy Studio for Bitget. See [client architecture](../ARCHITECTURE.md).
 

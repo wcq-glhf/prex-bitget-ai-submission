@@ -2,7 +2,7 @@
 
 PREX 面向普通交易用户，支持通过自然语言、专业表单、完整策略和代码配置构建策略，完成回测、保存、发布、持续跟踪与交易管理。
 
-[进入 PREX AI](https://test.prex.best/start) · [进入策略工作室](https://test.prex.best/strategies?view=backtest) · [已有产品视频](https://drive.google.com/file/d/18hOAWbHKjNPVI5ON2luKm4YQ1UTeMpHG/view?usp=drive_link)
+[进入 PREX 官网](https://prex.best) · [Bitget 投研预览](https://test.prex.best/start) · [Bitget 策略工作室预览](https://test.prex.best/strategies?view=backtest) · [已有产品视频](https://drive.google.com/file/d/18hOAWbHKjNPVI5ON2luKm4YQ1UTeMpHG/view?usp=drive_link)
 
 ## 公开范围
 
@@ -10,7 +10,18 @@ PREX 面向普通交易用户，支持通过自然语言、专业表单、完整
 
 PREX 网站、回测引擎、因子公式、内部权重、策略计算代码及实盘执行系统保持闭源。用户输入问题或策略请求，客户端发送给 PREX 后端，再展示后端返回的结果；不在本地执行回测计算。
 
-## 本地运行展示端
+## 在线体验
+
+直接访问 **[prex.best](https://prex.best)**，在浏览器中使用 PREX，无需安装程序或打开终端。
+
+本次参赛的 Bitget 功能请使用在线预览：**[市场研究](https://test.prex.best/start)** / **[策略工作室](https://test.prex.best/strategies?view=backtest)**。注册或登录 PREX 即可体验，研究和回测不需要连接交易账户或钱包。以上 Bitget 预览链接指向测试环境，与生产官网分开说明。
+
+## 开源展示客户端（开发者可选）
+
+仓库另外提供独立的本地 API 展示客户端。普通用户直接使用网站，不需要运行下面的程序。
+
+<details>
+<summary>查看开发者运行方式和客户端能力</summary>
 
 需要 Node.js 20 或更新版本，不需要安装依赖、连接钱包或提供交易所密钥。Windows 也可在 PowerShell 中运行：
 
@@ -20,7 +31,7 @@ cd prex-bitget-ai-submission
 npm start
 ```
 
-在同一台电脑打开 **http://127.0.0.1:4178**，保留终端运行。
+在同一台电脑打开 `npm start` 输出的本地访问地址，使用客户端期间保留该进程运行。这是可选的本地客户端，不代表将它部署到了 PREX 官网。
 
 ![PREX 展示端真实示例报告](./assets/display-preview.png)
 
@@ -37,6 +48,8 @@ npm start
 默认调用测试环境，沿用现有匿名 API 的限流和客户端 IP 权限，不绕过登录页面或服务器权限。回测时保持同一网络；客户端重启后不保留本地任务访问列表。它只绑定本机地址，不应直接作为公网多用户代理部署。
 
 `npm test` 使用模拟响应验证客户端，不创建远端任务。客户端不保存账户密钥，不自动重试回测提交，不自动交易。下载结果经过字段白名单处理，不带内部排名、因子权重或调仓配置。
+
+</details>
 
 **开源的是展示和调用层，不是可以离线独立计算的引擎。** 后端不可用时，客户端也不能自行计算。详细边界见 [架构说明](./ARCHITECTURE.md)。
 

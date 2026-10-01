@@ -2,13 +2,24 @@
 
 **AI strategy creation and execution for everyday traders.**
 
-[Try PREX](https://test.prex.best/start) · [Strategy Studio](https://test.prex.best/strategies?view=backtest) · [Product video](https://drive.google.com/file/d/18hOAWbHKjNPVI5ON2luKm4YQ1UTeMpHG/view?usp=drive_link) · [中文说明](./README.zh-CN.md)
+[Try PREX](https://prex.best) · [Bitget research preview](https://test.prex.best/start) · [Bitget Strategy Studio preview](https://test.prex.best/strategies?view=backtest) · [Product video](https://drive.google.com/file/d/18hOAWbHKjNPVI5ON2luKm4YQ1UTeMpHG/view?usp=drive_link) · [中文说明](./README.zh-CN.md)
 
 PREX helps users describe trading ideas, configure strategies, review historical performance, publish their work, and use their own connected trading accounts. The Bitget integration adds stock-market research and rToken strategy evaluation to the existing PREX interface.
 
 This public repository contains an MIT-licensed display client, request adapters, and project documentation. Users can enter a research question or their own backtest request and view the hosted PREX service's response. PREX's application, backtest engine, factor formulas, internal weights, strategy calculations, and execution infrastructure remain proprietary.
 
-## Run the open-source display client
+## Try PREX online
+
+Visit **[prex.best](https://prex.best)** to use PREX in your browser. No local installation or terminal is required.
+
+For the Bitget features described in this submission, use the hosted preview: **[Market research](https://test.prex.best/start)** or **[Strategy Studio](https://test.prex.best/strategies?view=backtest)**. Register or sign in to PREX to use the interactive workflows; no exchange key or wallet connection is needed for research and backtesting. These Bitget preview links point to the test environment, not the production website.
+
+## Open-source display client (optional, for developers)
+
+The repository also includes a separate local API/display client. Running it is optional and is not necessary to use the PREX website.
+
+<details>
+<summary>Developer setup and client capabilities</summary>
 
 Requirements: Node.js 20 or newer. No dependency installation, exchange key, or wallet connection is needed.
 
@@ -18,7 +29,7 @@ cd prex-bitget-ai-submission
 npm start
 ```
 
-Open **http://127.0.0.1:4178** on the same computer. Keep the terminal running.
+Open the local address printed by `npm start` on the same computer. Keep that process running while using the optional client; it does not deploy the client to the PREX website.
 
 ![PREX display client showing an actual hosted sample report](./assets/display-preview.png)
 
@@ -35,6 +46,8 @@ Natural-language backtesting currently routes Binance, OKX and Hyperliquid reque
 The default backend is `https://test.prex.best`. `PREX_API_BASE` can select that origin or `https://prex.best`; arbitrary hosts are rejected. Anonymous API access is subject to PREX's quotas and client-IP task ownership. Remain on the same network during a job. A server restart clears the local task allowlist; do not use this local demo as a public multi-user proxy.
 
 `npm test` runs local mocked integration tests; it does not create remote jobs. The application binds only to loopback, validates Host/Origin, does not retry POST requests, and keeps calculation details out of browser responses and downloads. It uses no local database, cookies, API credentials, trading permissions or automatic execution.
+
+</details>
 
 ### What is open, and what is not?
 
@@ -102,7 +115,8 @@ The report updates with available market data; values can change between visits.
 
 [Chinese form drafts and submission checklist](./SUBMISSION.zh-CN.md) include separate project descriptions, line-by-line material links, and a draft question for the organizer about closed-source evaluation. They are preparation materials, not a claim that either entry has been accepted.
 
-- **Project:** https://test.prex.best
+- **PREX website:** https://prex.best
+- **Bitget preview:** https://test.prex.best
 - **Public repository:** https://github.com/wcq-glhf/prex-bitget-ai-submission
 - **Research workflow:** https://test.prex.best/start
 - **Backtest workflow:** https://test.prex.best/strategies?view=backtest
