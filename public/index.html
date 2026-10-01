@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>PREX · Research Client</title><link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="shell">
+    <header><a class="brand" href="https://prex.best" target="_blank" rel="noreferrer">PREX<span>RESEARCH CLIENT</span></a><span class="badge">开源展示端 · 闭源计算服务</span></header>
+    <main>
+      <section class="intro"><span class="eyebrow">YOUR IDEAS. PREX RESEARCH.</span><h1>输入想法，查看结果。</h1><p>从一个研究问题，或一份交易策略开始。计算在 PREX 完成，这里只负责连接与展示。</p></section>
+      <nav class="tabs" aria-label="工作模式"><button type="button" class="selected" data-mode="research" aria-pressed="true">市场研究</button><button type="button" data-mode="backtest" aria-pressed="false">自定义回测</button><button type="button" data-mode="sample" aria-pressed="false">示例报告</button></nav>
+      <div class="workspace">
+        <section class="panel composer">
+          <form id="research-form"><h2>你想研究什么？</h2><p class="hint">Bitget 美股永续行情 · 不读取账户或下单</p><div class="row"><label>默认标的<input name="symbol" value="NVDAUSDT" maxlength="32" required></label><label>分析周期<select name="interval"><option value="1H">1 小时</option><option value="4H" selected>4 小时</option><option value="1D">1 天</option></select></label></div><label>研究问题<textarea name="question" rows="6" maxlength="2000" required>比较 NVDA 和 AMD 的趋势，谁更强？请按所选周期说明依据、风险和判断失效的条件。</textarea></label><button class="primary" type="submit">开始研究 <span aria-hidden="true">↗</span></button><p class="hint">若问题写了周期，请与上方选择一致。回答由 PREX 服务生成；服务可能使用规则回退。</p></form>
+          <form id="backtest-form" hidden><h2>验证你的策略</h2><p class="hint">真实提交服务器回测，不用示例报告替代你的结果。</p><label>输入方式<select id="input-mode" name="mode"><option value="prompt">自然语言 · Binance / OKX / Hyperliquid</option><option value="json">自己的 JSON 配置 · 包括 Bitget rToken</option></select></label><label id="prompt-field">策略想法<textarea name="prompt" rows="9" maxlength="12000" placeholder="写明市场、标的、周期、日期与交易规则。"></textarea></label><label id="json-field" hidden>完整 strategy 对象<textarea name="strategy" rows="12" spellcheck="false" placeholder="粘贴你自己的策略 JSON；不需要粘贴 PREX 的计算代码。"></textarea></label><button class="primary" type="submit">提交回测 <span aria-hidden="true">↗</span></button><button type="button" id="refresh-job" class="secondary" hidden>刷新当前任务</button><p class="hint">后端按客户端 IP 限流。保持同一网络；刷新任务不会重新创建回测。Bitget 自然语言路由尚未接入此 API，请用自己的 JSON 或策略工作室。</p><a id="studio-link" class="text-link" href="https://test.prex.best/strategies?view=backtest" target="_blank" rel="noreferrer">打开 PREX 策略工作室 ↗</a></form>
+          <section id="sample-panel" hidden><h2>看看报告长什么样</h2><p>获取 PREX 已有的 Bitget rToken 示例报告。它不是根据你上方输入创建的回测。</p><button id="load-sample" class="primary" type="button">加载示例报告 <span aria-hidden="true">↗</span></button><p class="hint">数据随可用行情更新。客户端只绘制服务返回的曲线，不重新计算收益或风险。</p></section>
+        </section>
+        <section class="panel results" aria-label="服务返回结果"><div class="result-heading"><div><span class="eyebrow">RESULTS</span><h2 id="result-title">等待你的第一个问题</h2></div><button id="download" class="secondary" type="button" hidden>下载展示结果</button></div><p id="status" role="status" aria-live="polite">尚未发起请求</p><div id="output"><div class="empty"><div class="empty-orbit" aria-hidden="true"></div><h3>研究，验证，再做决定。</h3><p>这里会展示 PREX 返回的研究结论、收益指标与资金曲线。</p></div></div></section>
+      </div>
+    </main>
+    <footer><span id="endpoint">计算服务：test.prex.best</span><span>不包含因子公式、内部权重或回测计算实现 · 历史表现不代表未来</span></footer>
+  </div><script type="module" src="/app.mjs"></script>
+</body>
+</html>

@@ -6,7 +6,44 @@
 
 PREX helps users describe trading ideas, configure strategies, review historical performance, publish their work, and use their own connected trading accounts. The Bitget integration adds stock-market research and rToken strategy evaluation to the existing PREX interface.
 
-This public repository contains project documentation and an MIT-licensed, read-only report client. PREX's hosted application, backtest engine, factor formulas, strategy calculations, and execution infrastructure remain proprietary.
+This public repository contains an MIT-licensed display client, request adapters, and project documentation. Users can enter a research question or their own backtest request and view the hosted PREX service's response. PREX's application, backtest engine, factor formulas, internal weights, strategy calculations, and execution infrastructure remain proprietary.
+
+## Run the open-source display client
+
+Requirements: Node.js 20 or newer. No dependency installation, exchange key, or wallet connection is needed.
+
+```bash
+git clone https://github.com/wcq-glhf/prex-bitget-ai-submission.git
+cd prex-bitget-ai-submission
+npm start
+```
+
+Open **http://127.0.0.1:4178** on the same computer. Keep the terminal running.
+
+![PREX display client showing an actual hosted sample report](./assets/display-preview.png)
+
+Screenshot: hosted example fetched on October 1, 2026, not a custom-user result or a promised return.
+
+- **Market research:** enter a question, default stock symbol and timeframe; PREX returns Bitget-backed research and market observations.
+- **Custom backtest:** submit natural language or your own complete `strategy` JSON object. The client creates a hosted job, polls its status and draws the returned curve.
+- **Sample report:** retrieve the existing rToken example, explicitly separate from user-created results.
+
+Natural-language backtesting currently routes Binance, OKX and Hyperliquid requests. For **Bitget rToken**, use your own JSON configuration or the hosted Strategy Studio. This client rejects Bitget natural-language requests rather than silently testing another venue. JSON configuration is user input, not PREX's calculation source.
+
+The default backend is `https://test.prex.best`. `PREX_API_BASE` can select that origin or `https://prex.best`; arbitrary hosts are rejected. Anonymous API access is subject to PREX's quotas and client-IP task ownership. Remain on the same network during a job. A server restart clears the local task allowlist; do not use this local demo as a public multi-user proxy.
+
+`npm test` runs local mocked integration tests; it does not create remote jobs. The application binds only to loopback, validates Host/Origin, does not retry POST requests, and keeps calculation details out of browser responses and downloads. It uses no local database, cookies, API credentials, trading permissions or automatic execution.
+
+### What is open, and what is not?
+
+| Open in this repository | Hosted privately by PREX |
+| --- | --- |
+| Input forms, request validation and API calls | Strategy interpretation and engine internals |
+| Job status handling and bounded polling | Factor formulas, ranking and internal weights |
+| Display-field allowlists and chart drawing | Backtest simulation, costs and performance calculations |
+| Tests and usage documentation | Execution infrastructure, private data and credentials |
+
+The client needs an available PREX backend. Cloning it does **not** install a standalone backtest engine. A downloadable display report contains returned results, not the algorithm that produced them. See [architecture and privacy boundary](./ARCHITECTURE.md).
 
 ## Projects
 
@@ -23,7 +60,7 @@ This public repository contains project documentation and an MIT-licensed, read-
 - Review test dates, returns, drawdown, risk metrics, costs, and equity curves.
 - Save and publish strategies, browse authors, and continue through PREX's existing strategy-management workflow.
 
-The Bitget research and backtest workflows do not require exchange credentials and do not place orders.
+The research and backtest workflows do not require exchange credentials and do not place orders. Custom backtests create server-side research jobs and consume the existing API quota; the existing-report reader only retrieves a report.
 
 ## Try the research workflow
 
@@ -75,7 +112,7 @@ The existing video shows the general PREX / Binance Agent OS product workflow. I
 
 ## Evaluation scope
 
-The Alpha Factory submission instructions require the code or notebook that generates the backtest report. This repository provides a report-reading client, not that calculation code. Acceptance of a closed-source alternative must be confirmed with the organizer; a public repository alone does not establish compliance.
+The Alpha Factory submission instructions require the code or notebook that generates the backtest report. This repository provides an input/display client that requests hosted calculations, not that calculation code. Acceptance of a closed-source alternative must be confirmed with the organizer; a public repository alone does not establish compliance.
 
 AI Trading Desk requires a complete research-task demonstration or recording. The product workflow and existing overview video are available; their acceptance depends on the organizer's assessment of the demonstrated task.
 

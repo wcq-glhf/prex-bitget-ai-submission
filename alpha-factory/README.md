@@ -6,6 +6,12 @@ Sub-theme: **rToken Factor Strategies**
 
 PREX integrates Bitget rToken market data into the existing Strategy Studio. Users choose instruments and strategy settings, run a hosted backtest, and inspect performance and equity curves.
 
+## Open-source display client
+
+Run `npm start` in the repository root, open `http://127.0.0.1:4178`, and select **自定义回测**. Submit your own complete strategy JSON for a Bitget rToken test; the client creates a hosted task and displays its returned metrics and curve. The proprietary calculation engine is not included. The separate **示例报告** tab retrieves an existing report and does not substitute for a custom result.
+
+The natural-language mode supports the existing Binance / OKX / Hyperliquid route, but currently rejects Bitget prompts because that hosted natural-language route has not been integrated. Use user-authored JSON or the hosted Strategy Studio for Bitget. See [client architecture](../ARCHITECTURE.md).
+
 ## Product and results
 
 - [Strategy Studio](https://test.prex.best/strategies?view=backtest)

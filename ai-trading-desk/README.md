@@ -4,6 +4,12 @@ Track: **AI Trading Desk**
 
 Sub-theme: **Personalized Research Workbench**
 
+## Open-source display client
+
+Run `npm start` from the repository root and open `http://127.0.0.1:4178` on the same computer. Select **市场研究**, enter your question, default symbol and timeframe, then submit. The local client calls PREX's existing research API and displays the returned answer and market observations. It includes no indicator calculations, model credentials or proprietary prompts. Anonymous access remains subject to the hosted API's quotas.
+
+The following hosted product workflow is also available; it does not require installing the display client.
+
 ## Complete task to try
 
 1. Open https://test.prex.best/start and create or sign in to a PREX account.
