@@ -25,10 +25,12 @@ Open **http://127.0.0.1:4178** on the same computer. Keep the terminal running.
 Screenshot: hosted example fetched on October 1, 2026, not a custom-user result or a promised return.
 
 - **Market research:** enter a question, default stock symbol and timeframe; PREX returns Bitget-backed research and market observations.
-- **Custom backtest:** submit natural language or your own complete `strategy` JSON object. The client creates a hosted job, polls its status and draws the returned curve.
+- **Custom backtest:** fill in the Bitget rToken form, submit natural language for supported venues, or paste your own complete `strategy` JSON object. The client creates a hosted job, polls its status and draws the returned curve.
 - **Sample report:** retrieve the existing rToken example, explicitly separate from user-created results.
 
-Natural-language backtesting currently routes Binance, OKX and Hyperliquid requests. For **Bitget rToken**, use your own JSON configuration or the hosted Strategy Studio. This client rejects Bitget natural-language requests rather than silently testing another venue. JSON configuration is user input, not PREX's calculation source.
+The **Bitget rToken form** collects your instrument codes, dates, timeframe, test capital, indicator, lookback and rebalance interval. It submits a simple long-only, unlevered, single-indicator ranking configuration. Indicator names are public API options, not their formulas. You supply the strategy parameters; the form does not embed the proprietary example's recipe. Unsupported symbols or unavailable history remain backend validation errors. Use JSON or Strategy Studio for more complex rules.
+
+Natural-language backtesting currently routes Binance, OKX and Hyperliquid requests. For **Bitget rToken**, use the form, your own JSON configuration or the hosted Strategy Studio. This client rejects Bitget natural-language requests rather than silently testing another venue. Form/JSON configuration is user input, not PREX's calculation source.
 
 The default backend is `https://test.prex.best`. `PREX_API_BASE` can select that origin or `https://prex.best`; arbitrary hosts are rejected. Anonymous API access is subject to PREX's quotas and client-IP task ownership. Remain on the same network during a job. A server restart clears the local task allowlist; do not use this local demo as a public multi-user proxy.
 

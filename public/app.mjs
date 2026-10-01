@@ -51,10 +51,30 @@ for (const tab of document.querySelectorAll("[data-mode]")) tab.addEventListener
   $("backtest-form").hidden = tab.dataset.mode !== "backtest"
   $("sample-panel").hidden = tab.dataset.mode !== "sample"
 })
-$("input-mode").addEventListener("change", () => {
-  $("prompt-field").hidden = $("input-mode").value !== "prompt"
-  $("json-field").hidden = $("input-mode").value !== "json"
+function changeInputMode() {
+  const mode = $("input-mode").value
+  for (const [value, id] of [["form", "form-fields"], ["prompt", "prompt-field"], ["json", "json-field"]]) {
+    const field = $(id)
+    field.hidden = mode !== value
+    for (const control of field.querySelectorAll("input, select, textarea")) control.disabled = mode !== value
+  }
+}
+$("input-mode").addEventListener("change", changeInputMode)
+changeInputMode()
+for (const field of $("form-fields").querySelectorAll("input[type=date]")) field.max = new Date().toISOString().slice(0, 10)
+$("form-fields").addEventListener("input", () => {
+  const form = $("backtest-form").elements
+  const bars = Number(form.rebalanceEveryBars.value)
+  const hours = { "1h": 1, "4h": 4, "1d": 24 }[form.interval.value]
+  $("schedule-summary").textContent = Number.isInteger(bars) && bars >= 1 && bars <= 10_000
+    ? `每 ${bars} 根 ${form.interval.selectedOptions[0].textContent} K 线调仓（约 ${bars * hours} 小时）。实际执行取决于可用 K 线。`
+    : "填写调仓间隔后显示对应时间。"
 })
+// Ensure invalid inputs inside collapsed cost settings can receive browser validation focus.
+$("form-fields").addEventListener("invalid", (event) => {
+  const details = event.target.closest("details")
+  if (details) details.open = true
+}, true)
 
 $("research-form").addEventListener("submit", async (event) => {
   event.preventDefault()
@@ -78,9 +98,11 @@ $("backtest-form").addEventListener("submit", async (event) => {
   status("正在提交到 PREX 回测服务…")
   try {
     const form = new FormData(event.currentTarget)
-    const body = form.get("mode") === "json"
-      ? { mode: "json", strategy: JSON.parse(form.get("strategy")) }
-      : { mode: "prompt", prompt: form.get("prompt") }
+    const body = form.get("mode") === "form"
+      ? { mode: "form", parameters: Object.fromEntries(form) }
+      : form.get("mode") === "json"
+        ? { mode: "json", strategy: JSON.parse(form.get("strategy")) }
+        : { mode: "prompt", prompt: form.get("prompt") }
     // This POST is never retried automatically.
     const { job } = await api("/api/backtests", body)
     currentJob = job.id

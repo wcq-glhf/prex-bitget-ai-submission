@@ -4,6 +4,7 @@ import { once } from "node:events"
 import { get } from "node:http"
 import { backtestInput, researchInput, displayReport, displayResearch } from "../lib/display.mjs"
 import { createDisplayServer } from "../server.mjs"
+import { formStrategy } from "../lib/form-input.mjs"
 
 const sentinel = "PRIVATE_TEST_SENTINEL"
 const id = "public-test-job"
@@ -13,6 +14,43 @@ const report = {
   equityCurve: [{ ts: 1, equity: 100, private: sentinel }, { ts: 2, equity: 112.3 }],
   rebalances: [sentinel], benchmark: { equityCurve: [{ ts: 1, equity: 100 }, { ts: 2, equity: 103 }] },
 }
+// User input fixture, not a PREX strategy recipe or an expected trading return.
+const form = {
+  name: "My test input", symbols: "rnvdausdt， RAMDUSDT", interval: "4h",
+  start: "2026-08-01", end: "2026-09-01", initialCapital: "800", feeBps: "3", slippageBps: "7",
+  indicator: "Rsi", lookback: "17", sort: "asc", select: "2", rebalanceEveryBars: "12",
+}
+test("form serializes user selections without computing factors or substituting venue", () => {
+  const strategy = formStrategy({ ...form, private: sentinel, exchange: "binance", leverage: 10 })
+  assert.equal(strategy.exchange, "bitget")
+  assert.equal(strategy.marketType, "spot")
+  assert.equal(strategy.leverage, 1)
+  assert.deepEqual(strategy.universe, ["RNVDAUSDT", "RAMDUSDT"])
+  assert.equal(strategy.interval, "4h")
+  assert.equal(strategy.start, form.start)
+  assert.equal(strategy.end, form.end)
+  assert.equal(strategy.initialCapital, 800)
+  assert.equal(strategy.feeBps, 3)
+  assert.equal(strategy.slippageBps, 7)
+  assert.equal(strategy.rebalanceEveryBars, 12)
+  assert.equal(strategy.long.select, 2)
+  assert.deepEqual(strategy.long.factors, [{ name: "Rsi", param: 17, sort: "asc", weight: 1 }])
+  assert.equal(JSON.stringify(strategy).includes(sentinel), false)
+  assert.deepEqual(backtestInput({ mode: "form", parameters: form }), { strategy })
+  assert.equal("end" in formStrategy({ ...form, end: "" }), false)
+})
+test("form rejects incomplete, malformed and conflicting user input", () => {
+  for (const overrides of [
+    { name: "" }, { name: "x".repeat(121) }, { symbols: "" }, { symbols: "NVDAUSDT" },
+    { symbols: "RNVDAUSDT,rnvdausdt" }, { select: "3" }, { interval: "15m" },
+    { start: "2026-02-30" }, { start: "9999-01-01" }, { end: "2026-07-31" }, { end: form.start },
+    { indicator: "PrivateFactor" }, { sort: "invalid" }, { initialCapital: "Infinity" },
+    { feeBps: "-1" }, { feeBps: "" }, { slippageBps: false }, { rebalanceEveryBars: "2.5" },
+    { lookback: "" }, { lookback: "1501" }, { select: [] },
+  ]) assert.throws(() => formStrategy({ ...form, ...overrides }), undefined, JSON.stringify(overrides))
+  assert.throws(() => formStrategy(null))
+  assert.throws(() => backtestInput({ mode: "unknown", prompt: "Binance BTCUSDT 1h test" }))
+})
 test("results are explicit allowlists, not raw engine payloads", () => {
   const result = displayReport(report)
   assert.equal(result.metrics[0].value, 12.3)
@@ -70,6 +108,20 @@ test("create then poll is functional; no engine fields reach the browser", async
   assert.equal(JSON.stringify(data).includes(sentinel), false)
   assert.equal(calls.length, 2)
   assert.equal(calls[0].options.redirect, "error")
+})
+test("form endpoint creates a user-configured Bitget task and rejects invalid input before forwarding", async (t) => {
+  const calls = []
+  const { call } = await fixture(t, async (url, options) => {
+    calls.push({ url, body: JSON.parse(options.body) })
+    return Response.json({ id, status: "queued" })
+  })
+  const invalid = await call("/api/backtests", { mode: "form", parameters: { ...form, select: "10" } })
+  assert.equal(invalid.status, 400)
+  assert.equal(calls.length, 0)
+  assert.equal((await call("/api/backtests", { mode: "form", parameters: form })).status, 202)
+  assert.equal(calls.length, 1)
+  assert.equal(calls[0].url, "https://test.prex.best/api/v1/backtests")
+  assert.deepEqual(calls[0].body, { strategy: formStrategy(form) })
 })
 test("unknown jobs, cross-site requests, Host injection and file traversal are rejected", async (t) => {
   let calls = 0

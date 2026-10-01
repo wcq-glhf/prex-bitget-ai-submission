@@ -26,7 +26,9 @@ Display-safe metrics, research text and curve points
 
 All requests target `https://test.prex.best` by default. No endpoint places an order, publishes a strategy, accesses an exchange account or transfers funds.
 
-The display client forwards research input or a user-provided strategy; it never supplies PREX's proprietary factor recipe. The natural-language API currently does not correctly route Bitget rToken, so the client rejects that input and points users to JSON mode or Strategy Studio. A user-authored Bitget configuration can be sent through the existing structured API. Unsupported inputs remain errors rather than silently substituted results.
+The display client forwards research input or a user-provided strategy; it never supplies PREX's proprietary factor recipe. The Bitget form serializes user selections into the public strategy schema: instrument codes, dates, timeframe, one public indicator identifier and user-chosen period, ranking direction, capital, costs and rebalance interval. It performs input validation, not financial calculations. It is deliberately limited to long-only, unlevered rToken spot research; the historical API asset-class enum is `stock_perp`, but `exchange=bitget` and `marketType=spot` determine the data route, not perpetual execution.
+
+The natural-language API currently does not correctly route Bitget rToken, so the client rejects that input and points users to form/JSON mode or Strategy Studio. A user-authored Bitget configuration is sent through the existing structured API. Unsupported inputs remain errors rather than silently substituted results.
 
 ## Source boundary
 
