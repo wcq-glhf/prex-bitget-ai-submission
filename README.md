@@ -20,6 +20,8 @@ For the Bitget features described in this submission, use the hosted preview: **
 
 An actual hosted sample rendered by the optional API client on October 1, 2026, not the website UI or a custom-user result. The report shows its actual curve dates, generation time and server-labelled validation window. These labels alone do not prove an untouched out-of-sample test.
 
+For market research, see the [actual NVDA/AMD task, returned observations and screenshot](./ai-trading-desk/RESEARCH_CASE.md). Research cards distinguish closed-candle prices from live quotes; the record states the verification scope and remaining limitations.
+
 ## Open-source display client (optional, for developers)
 
 The repository also includes a separate local API/display client. Running it is optional and is not necessary to use the PREX website.

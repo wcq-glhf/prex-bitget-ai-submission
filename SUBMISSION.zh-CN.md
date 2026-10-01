@@ -54,7 +54,7 @@ Bitget 研究入口已融合到 PREX 现有 AI 助手，不需要切换到独立
 
 ### 大模型的作用（草稿）
 
-大模型用于理解研究问题、提取标的和时间周期、结合接入的市场数据组织解释，以及处理用户追问。行情来源与模型文字生成分开说明；模型不保证涨跌，也不在本投研流程中自主交易。
+程序先识别支持的标的和时间周期，并读取对应的 Bitget 行情；大模型结合用户问题与这些市场证据组织解释。标的匹配、行情读取与模型文字生成分开说明，不把程序解析描述成模型自主调用交易工具。模型不保证涨跌，也不在本投研流程中自主交易。
 
 2026 年 10 月 1 日核验的 Bitget 投研调用模型为 **DeepSeek V4 Flash（`deepseek-v4-flash`）**，用于结合 Bitget 快照组织研究结论，不负责产生行情数值或执行交易。接口成功生成模型正文时返回 `prex-ai+bitget-v3`；失败、超时或无可用正文时返回 `prex-rules+bitget-v3`，此时应标明规则回退，不能描述成模型成功回答。该说明不宣称所有 PREX 功能都使用同一模型，也不声称使用 Qwen。
 
@@ -63,6 +63,7 @@ Bitget 研究入口已融合到 PREX 现有 AI 助手，不需要切换到独立
 ```text
 项目 Demo（需注册或登录）：https://test.prex.best/start
 公开项目说明与体验步骤：https://github.com/wcq-glhf/prex-bitget-ai-submission/tree/main/ai-trading-desk
+真实投研记录与截图（API 展示端，非官网登录录屏）：https://github.com/wcq-glhf/prex-bitget-ai-submission/blob/main/ai-trading-desk/RESEARCH_CASE.md
 公开仓库（研究／自定义回测展示客户端，不含 PREX 引擎）：https://github.com/wcq-glhf/prex-bitget-ai-submission
 已有产品演示视频（PREX / Binance Agent OS 概览，非 Bitget 专项录屏）：https://drive.google.com/file/d/18hOAWbHKjNPVI5ON2luKm4YQ1UTeMpHG/view?usp=drive_link
 ```

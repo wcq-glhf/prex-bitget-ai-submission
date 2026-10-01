@@ -30,6 +30,8 @@ The research model configuration checked on October 1, 2026 uses **DeepSeek V4 F
 
 ## Optional developer client
 
+An [actual NVDA/AMD research record with screenshot](./RESEARCH_CASE.md) documents the October 1 API/display-client task, its returned observations and the verification limits. It distinguishes closed-candle prices from newer derivatives snapshots. It is not a recording of the logged-in website.
+
 The repository also includes a separate open-source display client for API users. See [developer setup](../README.md#open-source-display-client-optional-for-developers). Its **市场研究** tab accepts a question, symbol and timeframe, calls PREX's research API, and displays the returned answer and market observations. It includes no indicator calculations, model credentials or proprietary prompts. Anonymous API access remains subject to the hosted API's quotas. Running this client is not required to use the website.
 
 ## Existing video

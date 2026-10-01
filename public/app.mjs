@@ -176,8 +176,8 @@ function renderResearch(result) {
     const card = node("section", "market-card")
     card.append(node("h3", "", `${market.symbol} · ${market.interval}`))
     const data = node("div", "market-data")
-    data.append(metric("参考价格", market.price), metric("RSI", market.rsi), metric("支撑", market.support), metric("压力", market.resistance))
-    card.append(data, node("p", "market-time", `数据时间：${market.dataTime || "未提供"} · ${market.trend || "未提供趋势"}`))
+    data.append(metric("已收盘 K 线价格", market.price), metric("RSI", market.rsi), metric("支撑", market.support), metric("压力", market.resistance))
+    card.append(data, node("p", "market-time", `K 线起始时间：${market.dataTime || "未提供"} · ${market.trend || "未提供趋势"} · 非实时成交价`))
     $("output").append(card)
   }
 }
